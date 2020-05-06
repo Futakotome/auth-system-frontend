@@ -1,8 +1,10 @@
 const baseUrl = process.env.VUE_APP_BASE_URL
+const authPort = process.env.VUE_APP_AUTH_PORT
+const authUrl = process.env.VUE_APP_AUTH_URL
 
 export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
   type = type.toUpperCase()
-  url = baseUrl + url
+  url = baseUrl + ":" + authPort + authUrl
   if (type == 'GET') {
     let dataStr = ''
     Object.keys(data).forEach(key => {
@@ -14,11 +16,11 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
     }
   }
   if (window.fetch && method == 'fetch') {
-    let requestConfig = {
+    const requestConfig = {
       credentials: 'include',
       method: type,
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       mode: 'cors',
@@ -42,19 +44,19 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
       if (window.XMLHttpRequest) {
         requestObj = new XMLHttpRequest()
       } else {
-        requestObj = new ActiveXObject
+        requestObj = new ActiveXObject()
       }
       let sendData = ''
       if (type == 'POST') {
         sendData = JSON.stringify(data)
       }
       requestObj.open(type, url, true)
-      requestObj.setRequestHeader('Content-Type', "application/x-www-form-urlencoded")
+      requestObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
       requestObj.send(sendData)
       requestObj.onreadystatechange = () => {
         if (requestObj.readyState == 4) {
           let obj = requestObj.response
-          if (typeof obj != 'object') {
+          if (typeof obj !== 'object') {
             obj = JSON.parse(obj)
           }
           resolve(obj)

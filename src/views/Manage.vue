@@ -1,10 +1,10 @@
 <template>
-
+  <h1> hi!mother fucker</h1>
 </template>
 
 <script>
   export default {
-    name: "manage"
+    name: 'manage'
   }
 </script>
 

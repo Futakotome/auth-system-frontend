@@ -1,9 +1,9 @@
 import axios from 'axios'
 import config from './config'
 import qs from 'qs'
-import router from "../router";
+import router from '../router'
 
-export default function $axios(options) {
+export default function $axios (options) {
   return new Promise((resolve, reject) => {
     const instance = axios.create({
       baseURL: config.baseURL,
@@ -62,7 +62,7 @@ export default function $axios(options) {
         }
         switch (data.code) {
           case '':
-            break;
+            break
           default:
         }
         return data
@@ -104,7 +104,6 @@ export default function $axios(options) {
               error.message = 'http版本不支持'
               break
             default:
-
           }
         }
         console.error(error)
