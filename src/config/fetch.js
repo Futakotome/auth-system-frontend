@@ -4,7 +4,7 @@ const authUrl = process.env.VUE_APP_AUTH_URL
 
 export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
   type = type.toUpperCase()
-  url = baseUrl + ":" + authPort + authUrl
+  url = baseUrl + ":" + authPort + authUrl + url
   if (type == 'GET') {
     let dataStr = ''
     Object.keys(data).forEach(key => {

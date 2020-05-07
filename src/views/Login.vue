@@ -68,6 +68,7 @@ export default {
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
           const res = await login({ username: this.loginForm.username, password: this.loginForm.password })
+          console.info(res)
           if (res.status == 1) {
             this.$message({
               type: 'success',
