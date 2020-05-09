@@ -1,10 +1,8 @@
 const baseUrl = process.env.VUE_APP_BASE_URL
-const authPort = process.env.VUE_APP_AUTH_PORT
-const authUrl = process.env.VUE_APP_AUTH_URL
 
 export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
   type = type.toUpperCase()
-  url = baseUrl + ":" + authPort + authUrl + url
+  url = baseUrl + url
   if (type == 'GET') {
     let dataStr = ''
     Object.keys(data).forEach(key => {
@@ -20,7 +18,7 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
       credentials: 'include',
       method: type,
       headers: {
-        Accept: '*/*',
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       mode: 'cors',
@@ -44,7 +42,7 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
       if (window.XMLHttpRequest) {
         requestObj = new XMLHttpRequest()
       } else {
-        requestObj = new ActiveXObject()
+        requestObj = new ActiveXObject
       }
       let sendData = ''
       if (type == 'POST') {

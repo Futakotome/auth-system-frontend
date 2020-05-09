@@ -1,4 +1,6 @@
 import fetch from '@/config/fetch'
 
-export const login = data => fetch('/login', data, 'POST')
+const authUrl = process.env.VUE_APP_AUTH_URL
+
+export const login = data => fetch(authUrl + '/login', data, 'POST')
 export const getAdminInfo = () => fetch('/admin/info')
